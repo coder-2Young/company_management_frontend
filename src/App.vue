@@ -1,85 +1,62 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div id="app">
+    <h1>企业管理系统</h1>
+    <div class="nav">
+      <button
+        v-for="tab in tabs"
+        :key="tab"
+        :class="{ active: tab === currentTab }"
+        @click="currentTab = tab"
+      >
+        {{ tab }}
+      </button>
     </div>
-  </header>
-
-  <RouterView />
+    <div class="content">
+      <order-management v-if="currentTab === '订单管理'"></order-management>
+      <production-management v-if="currentTab === '生产管理'"></production-management>
+      <inventory-management v-if="currentTab === '库存管理'"></inventory-management>
+      <customer-management v-if="currentTab === '客户管理'"></customer-management>
+      <router-view></router-view>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+<script>
+import OrderManagement from './views/Order.vue'
+// import ProductionManagement from './views/Production.vue'
+// import InventoryManagement from './views/Inventory.vue'
+// import CustomerManagement from './views/Customer.vue'
+export default {
+  name: 'App',
+  components: {
+    OrderManagement,
+    ProductionManagement,
+    InventoryManagement,
+    CustomerManagement
+  },
+  data() {
+    return {
+      tabs: ['订单管理', '生产管理', '库存管理', '客户管理'],
+      currentTab: '订单管理'
+    }
   }
+}
+</script>
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+<style>
+.nav {
+  display: flex;
+  justify-content: space-around;
+}
+.nav button {
+  padding: 10px;
+  border: none;
+  background-color: lightgray;
+}
+.nav button.active {
+  background-color: skyblue;
+}
+.content {
+  margin: 20px;
 }
 </style>

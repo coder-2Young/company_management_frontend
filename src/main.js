@@ -1,14 +1,21 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-
+import { createRouter, createWebHashHistory } from 'vue-router'
 import App from './App.vue'
-import router from './router'
+import Order from './Order.vue'
+import Production from './Production.vue'
+import Inventory from './Inventory.vue'
+import Customer from './Customer.vue'
 
-const app = createApp(App)
+// 创建路由器实例
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes: [
+    { path: '/order', component: Order },
+    { path: '/production', component: Production },
+    { path: '/inventory', component: Inventory },
+    { path: '/customer', component: Customer }
+  ]
+})
 
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+// 创建Vue实例，并挂载到App.vue上
+createApp(App).use(router).mount('#app')
