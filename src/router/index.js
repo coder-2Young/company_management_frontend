@@ -1,35 +1,18 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Order from "../views/Order.vue";
-// import Production from "../views/Production.vue";
-// import Inventory from "../views/Inventory.vue";
-// import Customer from "../views/Customer.vue";
+import { createRouter, createWebHashHistory } from 'vue-router'
+import OrderMangement from '../views/Order.vue'
+import ProductionMangement from '../views/Production.vue'
+import InventoryMangement from '../views/Inventory.vue'
+import CustomerMangement from '../views/Customer.vue'
 
-const routes = [
-  {
-    path: "/",
-    name: "Order",
-    component: Order
-  },
-  {
-    path: "/production",
-    name: "Production",
-    component: Production
-  },
-  {
-    path: "/inventory",
-    name: "Inventory",
-    component: Inventory
-  },
-  {
-    path: "/customer",
-    name: "Customer",
-    component: Customer
-  }
-];
-
+// 创建路由器实例
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-});
+  history: createWebHashHistory(),
+  routes: [
+    { path: '/order', component: OrderMangement },
+    { path: '/production', component: ProductionMangement },
+    { path: '/inventory', component: InventoryMangement },
+    { path: '/customer', component: CustomerMangement }
+  ]
+})
 
-export default router;
+export default router

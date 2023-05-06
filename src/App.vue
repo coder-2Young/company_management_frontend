@@ -13,9 +13,9 @@
     </div>
     <div class="content">
       <order-management v-if="currentTab === '订单管理'"></order-management>
-      <production-management v-if="currentTab === '生产管理'"></production-management>
+      <!-- <production-management v-if="currentTab === '生产管理'"></production-management>
       <inventory-management v-if="currentTab === '库存管理'"></inventory-management>
-      <customer-management v-if="currentTab === '客户管理'"></customer-management>
+      <customer-management v-if="currentTab === '客户管理'"></customer-management> -->
       <router-view></router-view>
     </div>
   </div>
@@ -30,9 +30,9 @@ export default {
   name: 'App',
   components: {
     OrderManagement,
-    ProductionManagement,
-    InventoryManagement,
-    CustomerManagement
+    // ProductionManagement,
+    // InventoryManagement,
+    // CustomerManagement
   },
   data() {
     return {
@@ -47,6 +47,7 @@ export default {
 .nav {
   display: flex;
   justify-content: space-around;
+  background-color: red;
 }
 .nav button {
   padding: 10px;
